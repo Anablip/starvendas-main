@@ -55,7 +55,7 @@
                 
                 <!-- Campo Usuário -->
                 <div class="mb-4">
-                    <label for="txt_email" class="block text-sm font-medium text-gray-700 mb-1">Usuário:</label>
+                    <label for="txt_email" class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
                     <input 
                         type="text" 
                         id="txt_email" 

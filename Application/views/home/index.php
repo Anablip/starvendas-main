@@ -1,9 +1,53 @@
-<?php 
-// Nota: Os estilos globais como o gradiente de fundo (linear-gradient)
-// e a fonte 'Inter' devem ser aplicados no arquivo de layout principal,
-// como foi feito no <body> do arquivo 'index.php' na conversa anterior.
-?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= htmlspecialchars($data['produto']['nome'] ?? 'Detalhes do Produto') ?></title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Estilos baseados no CSS original */
+        :root {
+            --color-title: #5a2e91;
+            --color-primary: #9c27b0;
+            --color-primary-hover: #2196f3;
+            --color-card-bg: #f8faff;
+            --gradient-start: #e3f2fd;
+            --gradient-mid1: #bbdefb;
+            --gradient-mid2: #e0d3f2;
+            --gradient-end: #f0e6ff;
+        }
+        
+        body {
+            /* Mimics the original linear-gradient background */
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid1), var(--gradient-mid2), var(--gradient-end));
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+    </style>
 
+    <script>
+        // Configuração do Tailwind para mapear cores customizadas
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-purple': '#9c27b0',     /* btn-primary */
+                        'primary-hover': '#2196f3',      /* btn-primary:hover */
+                        'card-title': '#5a2e91',         /* card-title */
+                        'card-bg': '#f8faff',            /* card background */
+                        'badge-bg': '#e0d3f2',           /* badge.bg-secondary */
+                        'badge-text': '#5a2e91',         /* badge.bg-secondary text */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Equivalente a .row.mt-3 com colunas responsivas (col-md-4) -->

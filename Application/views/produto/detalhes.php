@@ -1,28 +1,4 @@
-<?php
-// --- SIMULAÇÃO DE DADOS (Para renderização em ambiente estático) ---
-// Em um ambiente de produção PHP, estas variáveis viriam do seu controlador.
-if (!isset($data['produto'])) {
-    $data['produto'] = [
-        'id' => 42,
-        'categoria' => 'Acessórios Premium',
-        'nome' => 'Pulseira de Couro Clássica',
-        'descricao' => 'Pulseira artesanal em couro legítimo, ideal para qualquer ocasião. Fecho magnético e design minimalista.',
-        'preco' => 189.50,
-        'imagem' => 'placeholder_bracelet.jpg',
-    ];
-}
-
-// Simula o status de login para controle de botões
-if (!isset($_SESSION['usuario_logado'])) {
-    // Definimos como true ou false para simular o comportamento do botão "Ir para o Carrinho"
-    $_SESSION['usuario_logado'] = true; 
-}
-
-$placeholder_img_url = 'https://placehold.co/400x320/a855f7/ffffff?text=' . urlencode($data['produto']['nome'] ?? 'Produto');
-// -------------------------------------------------------------------
-?>
-
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -134,7 +110,7 @@ $placeholder_img_url = 'https://placehold.co/400x320/a855f7/ffffff?text=' . urle
                             <a href="<?= $carrinho_link ?>" 
                                class="flex-1 text-center px-6 py-3 rounded-xl transition duration-200 font-semibold shadow-lg 
                                       text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300">
-                                <i class="fas fa-shopping-cart mr-2"></i> Ir para o Carrinho
+                                <i class="fas fa-cart-plus mr-2"></i> Ir para o Carrinho
                             </a>
                         </div>
                     </div>

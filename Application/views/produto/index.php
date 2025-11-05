@@ -1,41 +1,4 @@
-<?php
-// Simulação de dados para visualização, caso não estejam definidos
-// Em um ambiente real, essas variáveis seriam preenchidas pelo controlador PHP
-if (!isset($data['categorias'])) {
-    $data['categorias'] = [
-        ['id' => 1, 'nome' => 'Colares'],
-        ['id' => 2, 'nome' => 'Anéis'],
-        ['id' => 3, 'nome' => 'Pulseiras'],
-    ];
-}
 
-$placeholder_img_base = 'https://placehold.co/120x120/a855f7/ffffff?text=Produto';
-
-if (!isset($data['produtos'])) {
-    $data['produtos'] = [
-        [
-            'id' => 101, 
-            'id_categoria' => 2, 
-            'categoria' => 'Anéis',
-            'nome' => 'Anel de Prata Solitário',
-            'descricao' => 'Anel clássico de prata 925 com zircônia.',
-            'preco' => 129.90,
-            'quantidade' => 50,
-            'imagem' => 'placeholder_ring.jpg' // Usaremos o placeholder de imagem para este exemplo estático
-        ],
-        [
-            'id' => 102, 
-            'id_categoria' => 1, 
-            'categoria' => 'Colares',
-            'nome' => 'Colar Ponto de Luz',
-            'descricao' => 'Gargantilha delicada banhada a ouro.',
-            'preco' => 85.50,
-            'quantidade' => 120,
-            'imagem' => 'placeholder_necklace.jpg'
-        ]
-    ];
-}
-?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -210,12 +173,16 @@ if (!isset($data['produtos'])) {
                             <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
                                 <i class="fas fa-image"></i> Imagem
                             </th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <i class="fas fa-box"></i> Quantidade
+                            </th>
                             <th scope="col" class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 <i class="fas fa-cog"></i> Ações
                             </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
+                        <?php $placeholder_img_base = "https://via.placeholder.com/150/0000FF/FFFFFF?text=Sem+Imagem"; ?>
                         <?php foreach ($data['produtos'] as $produto): 
                             // O campo de imagem é substituído por um placeholder, já que não temos o upload real.
                             $img_url = str_replace('?text=Produto', '?text=' . urlencode($produto['nome']), $placeholder_img_base);
@@ -226,9 +193,8 @@ if (!isset($data['produtos'])) {
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700"><?= htmlspecialchars($produto['nome']) ?></td>
                             <td class="px-4 py-3 text-sm text-gray-700 truncate max-w-xs hidden md:table-cell"><?= htmlspecialchars($produto['descricao']) ?></td>
                             <td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-green-600">R$ <?= htmlspecialchars(number_format($produto['preco'], 2, ',', '.')) ?></td>
-                            <td class="px-4 py-3 whitespace-nowrap text-sm hidden sm:table-cell">
-                                <img src="<?= $img_url ?>" alt="Imagem do Produto" width="80" class="rounded-lg shadow-md mx-auto">
-                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-green-600"><img src="/uploads/produto/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do Produto" class="w-16 h-16 object-cover rounded-md"></td>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-green-600"><?= htmlspecialchars($produto['quantidade'])?></td>
                             <td class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium space-y-2 sm:space-y-0 sm:space-x-2">
                                 <!-- Botão Editar -->
                                 <button type="button" 
